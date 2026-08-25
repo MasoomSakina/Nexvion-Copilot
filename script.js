@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             // REPLACE THE URL BELOW WITH YOUR SHEETDB API ENDPOINT URL
-            fetch('https://sheetdb.io/api/v1/sjkt4smk1fid7', {
+            fetch('https://sheetdb.io/api/v1/dlal972pihgd3', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
