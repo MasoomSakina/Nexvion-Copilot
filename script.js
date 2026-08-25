@@ -1,36 +1,52 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const feedbackForm = document.getElementById('feedback-form');
-    const successMessage = document.getElementById('success-message');
-    const submitBtn = document.getElementById('submit-btn');
-
+// Handle Feedback Form Submission to Google Sheet (via SheetDB)
+document.addEventListener('DOMContentLoaded', function() {
+    const feedbackForm = document.getElementById('feedbackForm');
+    
     if (feedbackForm) {
-        feedbackForm.addEventListener('submit', async (e) => {
+        feedbackForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+            
+            btn.innerText = "Syncing...";
+            btn.disabled = true;
 
-            const formData = new FormData(feedbackForm);
-
-            try {
-                const response = await fetch(feedbackForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    feedbackForm.classList.add('hidden');
-                    successMessage.classList.remove('hidden');
-                } else {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Submit Feedback';
-                    alert('Submission error. Please verify your Formspree link.');
+            const formData = {
+                data: {
+                    name: document.getElementById('feedbackName').value,
+                    email: document.getElementById('feedbackEmail').value,
+                    feedback: document.getElementById('feedbackText').value
                 }
-            } catch (error) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Feedback';
-                alert('Network issue. Please try again.');
-            }
+            };
+
+            // REPLACE THE URL BELOW WITH YOUR SHEETDB API ENDPOINT URL
+            fetch('https://sheetdb.io/api/v1/sjkt4smk1fid7', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    status.classList.remove('hidden');
+                    feedbackForm.reset();
+                    btn.innerText = "Submit Feedback";
+                    btn.disabled = false;
+                    setTimeout(() => status.classList.add('hidden'), 5000);
+                } else {
+                    alert('Submission failed. Please check your API URL.');
+                    btn.innerText = "Submit Feedback";
+                    btn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                btn.innerText = "Submit Feedback";
+                btn.disabled = false;
+            });
         });
     }
 });
