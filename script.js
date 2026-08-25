@@ -1,4 +1,3 @@
-// Handle Feedback Form Submission to Google Sheet (via SheetDB)
 document.addEventListener('DOMContentLoaded', function() {
     const feedbackForm = document.getElementById('feedbackForm');
     
@@ -12,15 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.disabled = true;
 
             const formData = {
-                data: {
-                    name: document.getElementById('feedbackName').value,
-                    email: document.getElementById('feedbackEmail').value,
-                    feedback: document.getElementById('feedbackText').value
-                }
+                apikey: "14e212d5-36a2-4ed3-8a42-5d70e4246279", // <-- Paste your key here
+                name: document.getElementById('feedbackName').value,
+                email: document.getElementById('feedbackEmail').value,
+                message: document.getElementById('feedbackText').value
             };
 
-            // REPLACE THE URL BELOW WITH YOUR SHEETDB API ENDPOINT URL
-            fetch('https://sheetdb.io/api/v1/dlal972pihgd3', {
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -28,22 +25,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => {
-                if (response.ok) {
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
                     status.classList.remove('hidden');
                     feedbackForm.reset();
                     btn.innerText = "Submit Feedback";
                     btn.disabled = false;
                     setTimeout(() => status.classList.add('hidden'), 5000);
                 } else {
-                    alert('Submission failed. Please check your API URL.');
+                    alert(json.message || 'Submission failed. Please try again.');
                     btn.innerText = "Submit Feedback";
                     btn.disabled = false;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+                alert('An error occurred. Please check your connection.');
                 btn.innerText = "Submit Feedback";
                 btn.disabled = false;
             });
