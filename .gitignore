@@ -1,4 +1,16 @@
+# Python
 venv/
 env/
 __pycache__/
+
+# Secrets
 .env
+
+# Compressed Files
+*.zip
+*.tar.gz
+
+# OS & Editor Files
+.DS_Store
+.vscode/
+.idea/
