@@ -272,96 +272,48 @@
 
     </section>
 
-    <!-- Demo Section (Coming Soon Video Card) -->
-
+   <!-- Demo Section (Direct HTML5 Video Player) -->
     <section id="demo" class="py-24 bg-white border-b border-slate-200">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-           
-
+            
             <!-- Split Demo Card -->
-
             <div class="flex flex-col lg:flex-row bg-[#0f172a] rounded-3xl overflow-hidden shadow-2xl border border-slate-800">
-
-               
-
-                <!-- Left Side: Video Player Area (Takes up 60% of width on large screens) -->
-
-                <div class="w-full lg:w-3/5 bg-slate-900 relative aspect-video flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-800 p-8">
-
-                   
-
-                    <!-- Play Button -->
-
-                    <div class="w-16 h-16 bg-blue-600/20 text-blue-500 rounded-full flex items-center justify-center backdrop-blur-sm border border-blue-500/30 cursor-pointer hover:scale-110 transition-transform mb-6">
-
-                        <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-
-                    </div>
-
-                   
-
-                    <!-- Coming Soon Text inside Video -->
-
-                    <div class="text-center">
-
-                        <p class="text-white font-bold text-lg">Coming Soon: Main Demo</p>
-
-                        <p class="text-slate-400 text-sm mt-1">Full walkthrough video dropping shortly.</p>
-
-                    </div>
-
+                
+                <!-- Left Side: Video Player Area -->
+                <div class="w-full lg:w-3/5 bg-slate-900 relative aspect-video flex items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-800">
+                    <video 
+                        class="w-full h-full object-cover"
+                        controls 
+                        preload="metadata"
+                        poster="thumbnail.jpg">
+                        <source src="demo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
 
-
-
-                <!-- Right Side: Text & Details (Takes up 40% of width) -->
-
+                <!-- Right Side: Text & Details -->
                 <div class="w-full lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center">
-
                     <span class="font-mono text-blue-400 text-sm tracking-widest font-semibold mb-4">// LIVE DEMO</span>
-
-                   
-
+                    
                     <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
-
                         See the Ghost Cursor in action.
-
                     </h2>
-
-                   
-
+                    
                     <p class="font-mono text-slate-400 text-base leading-relaxed mb-8">
-
                         Watch Nexvion Copilot guide you through unfamiliar software, pointing and instructing in real time without ever taking control of your mouse.
-
                     </p>
-
-                   
-
-                    <!-- Pulsing Status Badge -->
-
-                    <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full font-mono text-sm w-fit">
-
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-
-                        Main demo dropping shortly
-
+                    
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 px-4 py-2 rounded-full font-mono text-sm w-fit">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                        MVP Walkthrough Live
                     </div>
-
                 </div>
-
-
 
             </div>
-
-           
-
+            
         </div>
-
     </section>
-
 
 
   <!-- Terminal-Themed Feedback Section with Name, Email & Google Sheets Integration -->
